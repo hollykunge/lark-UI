@@ -7,9 +7,6 @@ import {
   GeneralView,
   MonitorView
 } from '@/components/layouts'
-import {
-  RecentContact
-} from '@/utils/talk'
 
 export const asyncRouterMap = [
 
@@ -77,7 +74,7 @@ export const asyncRouterMap = [
         path: 'talk',
         name: 'Talk',
         component: RouteView,
-        redirect: '/talk/chatpanel',
+        redirect: '/talk/chatpanel/chatbox',
         meta: {
           title: '研讨',
           icon: 'message',
@@ -105,10 +102,7 @@ export const asyncRouterMap = [
               keepAlive: true,
               permission: ['talk'],
               hidden: true
-            },
-            props: (route) => ({
-              currentTalk: new RecentContact(route.query)
-            })
+            }
           }]
         }]
       },
@@ -120,7 +114,7 @@ export const asyncRouterMap = [
         meta: {
           title: '系统管理',
           icon: 'appstore',
-          permission: ['user', 'org', 'role', 'notice', 'menu', 'gatelog']
+          permission: ['user', 'org', 'role', 'notice', 'menu', 'gatelog', 'privateMsg', 'groupMsg']
         },
         children: [{
           path: 'user-list',
@@ -241,6 +235,28 @@ export const asyncRouterMap = [
             icon: 'message',
             keepAlive: false,
             permission: ['groupmaneger']
+          }
+        },
+        {
+          path: '/list/privateMsg',
+          name: 'privateMsg',
+          component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/privateMsg'),
+          meta: {
+            title: '个人消息审计',
+            icon: 'reconciliation',
+            keepAlive: false,
+            permission: ['privateMsg']
+          }
+        },
+        {
+          path: '/list/groupMsg',
+          name: 'groupMsg',
+          component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/groupMsg'),
+          meta: {
+            title: '群组消息审计',
+            icon: 'reconciliation',
+            keepAlive: false,
+            permission: ['groupMsg']
           }
         }
         ]

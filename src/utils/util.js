@@ -1,32 +1,18 @@
-export function timeFix () {
+export const timeFix = () => {
   const time = new Date()
   const hour = time.getHours()
   return hour < 9 ? '早上好' : (hour <= 11 ? '上午好' : (hour <= 13 ? '中午好' : (hour < 20 ? '下午好' : '晚上好')))
 }
 
-export function welcome () {
+export const welcome = () => {
   const arr = ['新的一天加油啊!', '准备吃什么呢?', '我猜你可能累了']
   const index = Math.floor((Math.random() * arr.length))
   return arr[index]
 }
 /**
- * card定位公式 i%2*width + i/2*height
- * @param {i}
- */
-// export function deCodeUniPostion (i) {
-//   const widthGrid = 1
-//   const heightGrid = 5
-//   return widthGrid * i % 2 + heightGrid * i / 2
-// }
-
-// export function enCodeUniPostion (code) {
-//   const widthGrid = 1
-//   const heightGrid = 5
-// }
-/**
  * 触发 window.resize
  */
-export function triggerWindowResizeEvent () {
+export const triggerWindowResizeEvent = () => {
   const event = document.createEvent('HTMLEvents')
   event.initEvent('resize', true, true)
   event.eventType = 'message'
@@ -38,7 +24,7 @@ export function triggerWindowResizeEvent () {
  * @param id parent element id or class
  * @param timeout
  */
-export function removeLoadingAnimate (id = '', timeout = 1500) {
+export const removeLoadingAnimate = (id = '', timeout = 1500) => {
   if (id === '') {
     return
   }
@@ -57,7 +43,7 @@ export function removeLoadingAnimate (id = '', timeout = 1500) {
  * @param {Date} date 时间
  * @param {String} fmt 格式
  */
-export function format (date, fmt) {
+export const format = (date, fmt) => {
   const o = {
     'y+': date.getFullYear(),
     'M+': date.getMonth() + 1,
@@ -124,7 +110,7 @@ export function format (date, fmt) {
  * 将时间格式转换成类似于微信的时间格式
  * @param {Date} date 时间
  */
-export function toWeiXinString (date) {
+export const toWeiXinString = (date) => {
   date = new Date(date)
   let str
   const now = new Date()
@@ -167,7 +153,7 @@ export function toWeiXinString (date) {
  * 格式化时间
  * @param {Date} date 时间
  */
-export function formatDateTime (date) {
+export const formatDateTime = (date) => {
   const y = date.getFullYear()
   let m = date.getMonth() + 1
   m = m < 10 ? '0' + m : m
@@ -187,7 +173,7 @@ export function formatDateTime (date) {
  * 输出格式：21小时前
  * @param  {[type]} date 日期
  */
-export function dateStr (date) {
+export const dateStr = (date) => {
   // 获取js 时间戳
   let time = new Date().getTime()
   // 去掉 js 时间戳后三位
@@ -218,31 +204,13 @@ export function dateStr (date) {
 }
 
 /**
- * 获取文件的扩展名
- * @param {String} file 文件名(带扩展)
- * @returns {String} 文件的扩展名，或者undefined
+ * 下载
+ * @param {String} url 下载地址
+ * @param {String} fileName 文件名
  */
-export function extensionStr (file) {
-  const index = file.lastIndexOf('.')
-  return index < 0 ? 'undefined' : file.substr(index + 1)
-}
-/**
- * 卡片拖拽坐标
- */
-export function cardDrag (i) {
-  return 1(i % 2) + 5(i / 2)
-}
-/**
- * 文件管理搜索
- */
-export function debounce (func, delay) {
-  let timer
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(() => {
-      func.apply(this, args)
-    }, delay)
-  }
+export const download = (url, fileName) => {
+  const a = document.createElement('a')
+  a.href = url
+  a.download = fileName
+  a.click()
 }

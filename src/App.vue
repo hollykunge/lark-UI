@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="locale">
-    <div id="app">
+    <div id="app" @contextmenu="preventCMDefault()">
       <router-view />
 
       <!-- <div v-else>
@@ -47,6 +47,15 @@ export default {
           break
       }
     })
+  },
+  methods: {
+    /** 禁止右键操作 */
+    preventCMDefault () {
+      if (process.env.NODE_ENV !== 'production') return
+
+      window.event.returnValue = false
+      return false
+    }
   }
 }
 </script>

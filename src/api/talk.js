@@ -13,12 +13,20 @@ const api = {
   getTalksetting: 'chat/zzGroup/getGroupInfo',
   getMoreInfo: '/talk/contacts/info',
   fileGrabble: 'chat/zzGroupFile/groupfile',
+  setFileApproveFLg: 'chat/zzFileManage/setFileApproveFLg',
+  groupFileListByMe: 'chat/zzGroupFile/groupFileListByMe',
+  groupFileListByPass: 'chat/zzGroupFile/groupFileListByPass',
+  groupFileListByOwner: 'chat/zzGroupFile/groupFileListByOwner',
+  getPrivateFile: 'chat/zzPrivateMsg/privateFile',
+  getGroupFile: 'chat/zzPrivateMsg/privateFile',
+  fileDown: '/chat/zzFileManage/downloadFile',
   userfileGrabble: 'chat/zzPrivateMsg/privateFile',
   talkHistoryAll: 'chat/zzGroup/queryHistoryMessageForSingle',
   MarkMessageGrabble: 'chat/zzUserGroupMsgTag/getUserGroupMsgTagList',
   getGroupMembers: 'chat/zzGroup/getGroupUserList',
   removeMember: 'chat/zzGroup/removeMember',
   addMember: 'chat/zzGroup/addMember',
+  filePermission: 'chat/zzFileManage/getFilesStatus',
   // getContent: 'https://www.easy-mock.com/mock/5cef9a806bbb7d72047ec887/drawer/notice/drawer/notice',
   // 下面的地址前面必须加/
   // 研讨文件上传地址
@@ -220,9 +228,59 @@ export function MarkMessageGrabble (userId, page, groupId) {
  * 联系人文件
  * userd receiver page size
  */
-export function userfileGrabble (parameter) {
+export function getPrivateFile (parameter) {
   return axios({
-    url: api.userfileGrabble,
+    url: api.getPrivateFile,
+    method: 'post',
+    params: parameter
+  })
+}
+/**
+ * 我的文件(群组)
+ */
+export function getGroupFile (parameter) {
+  return axios({
+    url: api.getGroupFile,
+    method: 'post',
+    params: parameter
+  })
+}
+/**
+ * 我的文件(群组)
+ */
+export function groupFileListByMe (parameter) {
+  return axios({
+    url: api.groupFileListByMe,
+    method: 'post',
+    params: parameter
+  })
+}
+/**
+ * 我的审批(群组)
+ */
+export function groupFileListByOwner (parameter) {
+  return axios({
+    url: api.groupFileListByOwner,
+    method: 'post',
+    params: parameter
+  })
+}
+/**
+ * 已审批(群组)
+ */
+export function groupFileListByPass (parameter) {
+  return axios({
+    url: api.groupFileListByPass,
+    method: 'post',
+    params: parameter
+  })
+}
+/**
+ * 审批文件
+ */
+export function setFileApproveFLg (parameter) {
+  return axios({
+    url: api.setFileApproveFLg,
     method: 'post',
     params: parameter
   })
@@ -268,5 +326,16 @@ export function removeMember (parameter) {
     url: api.removeMember,
     method: 'get',
     params: parameter
+  })
+}
+/**
+ * 获取文件下载权限
+ * @param {String} fileIds 文件ID，多个以逗号分割
+ */
+export function getFilePermission (fileIds) {
+  return axios({
+    url: api.filePermission,
+    method: 'get',
+    params: { fileIds: fileIds }
   })
 }

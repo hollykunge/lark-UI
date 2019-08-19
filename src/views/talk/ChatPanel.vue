@@ -20,7 +20,6 @@
           <span slot="tab">
             <a-icon type="clock-circle" style="{fontSize: 16px}" />最近
           </span>
-          <!-- 最近里面每一项 -->
           <div class="recent-contacts-container tab-content-container">
             <div v-for="(item, index) in recentContacts" :key="index" @click="showConvBox(item)">
               <recent-contacts-item :contactsInfo="item" :activated="item.id === activeChat"></recent-contacts-item>
@@ -152,28 +151,22 @@ export default {
       // 记录当前选中的联系人/群组信息
       activeContacts: '',
       activeGroup: '',
-      activeChat: '',
 
       // 加载状态
       recentLoading: false,
       groupLoading: false,
-      contactsLoading: false,
-
-      searchRecordModalVisible: false
+      contactsLoading: false
     }
   },
   computed: {
     ...mapGetters([
-      'currentTalk',
       'recentContacts',
       'groupList',
       'contactsTree'
-    ])
-  },
-  watch: {
-    currentTalk (newValue) {
-      // 监听当前研讨的变化，更新最近联系人选中状态
-      this.activeChat = newValue.id
+    ]),
+    // 当前激活的研讨ID
+    activeChat () {
+      return this.$store.getters.currentTalk.id
     }
   },
   methods: {
@@ -192,21 +185,15 @@ export default {
     handleSaveClose () {},
     /**
      * 展示研讨对话框
-     * @param {Object} currentTalk 当前研讨
+     * @param {Object} selectedItem 当前研讨
      */
-    showConvBox: function (currentTalk) {
-      this.activeChat = currentTalk.id
-      // 未读消息置为0
-      currentTalk.unreadNum = 0
-      // 初始化sotre中的当前会话
-      // this.currentTalk = currentTalk
-      this.$store.dispatch('UpdateRecentContacts', { ...currentTalk, reOrder: false, addUnread: false })
-
+    showConvBox (selectedItem) {
       // 路由跳转
-      this.$router.push({
-        path: '/talk/chatpanel/chatbox',
-        query: currentTalk
-      })
+      this.$router.push({ name: 'ChatBox' })
+      this.$store.dispatch('UpdateRecentContacts', { ...selectedItem, reOrder: false, addUnread: false })
+        .then(() => {
+          this.$store.commit('SET_CURRENT_TALK', selectedItem.id)
+        })
     },
     /** 展示群组详细信息 */
     showGroup (group) {
@@ -242,12 +229,6 @@ export default {
       this.$store.dispatch('GetRecentContacts').finally(() => {
         this.recentLoading = false
       })
-    },
-    handleOpenSearchRecordModal () {
-      this.searchRecordModalVisible = true
-    },
-    handleCloseSearchRecordModal () {
-      this.searchRecordModalVisible = false
     },
     showSearchDetail (item, isGroup) {
       if (isGroup) {

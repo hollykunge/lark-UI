@@ -32,7 +32,7 @@
         </template>
       </span>
     </a-table>
-    <a-pagination simple class="pageStyle" :total="total" @change="handleTableChange"/>
+    <!-- <a-pagination simple class="pageStyle" :total="total" @change="handleTableChange"/> -->
     <user-model ref="model" :operations="['添加']" @ok="handleSaveOk"/>
   </div>
 </template>

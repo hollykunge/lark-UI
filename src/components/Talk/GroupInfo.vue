@@ -61,7 +61,6 @@
 
 <script>
 import { getGroupInfo } from '@/api/talk'
-import { RecentContact } from '@/utils/talk/index.js'
 
 export default {
   name: 'GroupInfo',
@@ -104,24 +103,25 @@ export default {
         }
       )
     },
-    sendMessage (event) {
+    /** 跳转到研讨页 */
+    sendMessage () {
+      this.$emit('clickSend')
       const { id, name, avatar, securityClass, memberNum } = this.groupInfo
       const groupItem = {
-        id: id,
-        name: name,
-        avatar: avatar,
+        id,
+        name,
+        avatar,
+        memberNum,
         secretLevel: JSON.parse(securityClass),
-        memberNum: memberNum,
-        isGroup: true
+        isGroup: true,
+        reOrder: true,
+        addUnread: false
       }
-      this.$emit('clickSend')
-      this.$router.push({
-        path: '/talk/ChatPanel/ChatBox',
-        query: new RecentContact(groupItem)
-      })
-      groupItem.reOrder = true
-      groupItem.addUnread = false
+      this.$router.push({ name: 'ChatBox' })
       this.$store.dispatch('UpdateRecentContacts', groupItem)
+        .then(() => {
+          this.$store.commit('SET_CURRENT_TALK', id)
+        })
     }
   }
 }

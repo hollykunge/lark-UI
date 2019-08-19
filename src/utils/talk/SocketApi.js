@@ -20,6 +20,8 @@ const handleWsOpen = () => {
 
 /** 处理私聊和群组消息 */
 const handleMessage = (data) => {
+  // 自己发送的消息，不处理
+  if (data.fromId === store.getters.userId) return
   store
     .dispatch('UpdateTalkMap', { direction: 'receive', message: data })
     .then(() => {
@@ -117,11 +119,11 @@ const handleMessageAck = (received) => {
   // 删除定时任务 同时移出发送队列
   store.commit('DEL_TIMING_TASK', received.oId)
   // 判断消息是否发送成功
-  if (received.status === 0) {
+  if (received.status === 200) {
     // 发送成功 更新消息id
     store.commit('RESET_MESSAGE_ID', received)
   }
-  if (received.status === 1) {
+  if (received.status === 201) {
     // 发送失败 添加到失败列表
     store.commit('ADD_FAIL_SET', received.oId)
   }
@@ -193,6 +195,7 @@ class SocketApi {
 
     // 收到websocket消息
     ws.onmessage = messageEvent => {
+      console.log(messageEvent)
       const time = new Date()
       const received = JSON.parse(messageEvent.data)
       switch (received.code) {

@@ -32,7 +32,7 @@
       </div>
 
       <div class="message-bubble left right">
-        <div class="bubble-content">
+        <div class="bubble-content" v-contextmenu:messageCM>
           <div class="plain">
             <!-- 纯文本信息 -->
             <div v-if="messageInfo.content.type === 1" class="text-message">
@@ -106,9 +106,8 @@
                   </div>
                   <a
                     v-show="messageStatus === 100"
-                    :href="downloadUrl"
                     class="download"
-                    download
+                    @click="handleFileDownload(messageInfo.content.id)"
                   >下载</a>
                 </div>
               </div>
@@ -117,12 +116,20 @@
         </div>
       </div>
     </div>
+
+    <!-- 消息气泡右键菜单 -->
+    <v-contextmenu ref="messageCM">
+      <v-contextmenu-item @click="handleMsgCopy">复制</v-contextmenu-item>
+    </v-contextmenu>
   </div>
 </template>
 
 <script>
-import { toWeiXinString } from '@/utils/util'
+import { toWeiXinString, download } from '@/utils/util'
+// eslint-disable-next-line
 import api from '@/api/talk'
+// eslint-disable-next-line
+import { getFilePermission } from '@/api/talk'
 import { mapGetters } from 'vuex'
 import { transform } from '@/utils/face'
 
@@ -217,6 +224,33 @@ export default {
     },
     faceTransform (content) {
       return transform(content)
+    },
+    /**
+     * 文件下载
+     * @param {String} fileId 文件ID
+     */
+    handleFileDownload (fileId) {
+      getFilePermission(fileId).then(res => {
+        if (res.status === 200 && res.result === '1') {
+          download(this.downloadUrl, this.fileTitle)
+        } else {
+          this.$message.warning('未通过审批，不能下载')
+        }
+      }).catch(() => {
+        this.$message.error('下载失败，请稍后再试')
+      })
+    },
+    /**
+     * 右键菜单-复制
+     */
+    handleMsgCopy (vm, event) {
+      // 使用vue-clipboard2插件
+      this.$copyText(this.messageInfo.content.title)
+        .then(e => {
+          this.$message.success('复制成功！')
+        }, () => {
+          this.$message.success('复制失败！')
+        })
     }
   }
 }

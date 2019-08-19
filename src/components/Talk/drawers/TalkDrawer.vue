@@ -12,8 +12,9 @@
   >
     <history-msg v-if="activeOption.drawerType=='talkHistory'" :contactId="contactId" :isGroup="isGroup"></history-msg><!-- 聊天内容 -->
     <user-file-grabble v-else-if="activeOption.drawerType=='userFile'" :contactId="contactId"></user-file-grabble><!-- 一对一对话文件 -->
-    <file-grabble v-else-if="activeOption.drawerType=='talkFile'" :contactId="contactId"></file-grabble><!-- 群文件 -->
+    <file-grabble v-else-if="activeOption.drawerType=='groupFile'" :contactId="contactId"></file-grabble><!-- 群文件 -->
     <team-member v-else-if="activeOption.drawerType=='teamMember'" :contactId="contactId"></team-member><!-- 组成员 -->
+    <talk-setting v-else-if="activeOption.drawerType=='moreInfo'" :contactId="contactId"></talk-setting><!-- 群组信息 -->
   </a-drawer>
 </template>
 <script>
@@ -21,13 +22,15 @@ import historyMsg from './messageGrabble.vue'
 import fileGrabble from './fileGrabble.vue'
 import userFileGrabble from './UserFileGrabble.vue'
 import teamMember from './TeamMember'
+import talkSetting from './TalkSetting'
 export default {
   name: 'TalkDrawer',
   components: {
     historyMsg,
     fileGrabble,
     userFileGrabble,
-    teamMember
+    teamMember,
+    talkSetting
   },
   props: {
     activeOption: {
@@ -53,7 +56,7 @@ export default {
   data () {
     return {
       // 聊天框操作选项
-      config: ['talkHistory', 'talkFile', 'userFile', 'moreInfo', 'personMoreInfo', 'teamMember']
+      config: ['talkHistory', 'groupFile', 'userFile', 'moreInfo', 'personMoreInfo', 'teamMember']
     }
   },
   methods: {

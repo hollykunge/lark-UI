@@ -211,12 +211,6 @@ export default {
     TalkDrawer
   },
   props: {
-    /** 聊天对话框的基本信息--结构同最近联系人 */
-    chatInfo: {
-      type: Object,
-      default: () => ({}),
-      required: true
-    },
     /** 是否为弹框式的聊天窗口 */
     isPopup: {
       type: Boolean,
@@ -278,8 +272,18 @@ export default {
       drawerWidth: ''
     }
   },
+  activated () {
+    this.scrollToBottom()
+  },
   computed: {
-    ...mapGetters(['onlineState', 'userSecretLevel', 'userId', 'avatar', 'nickname', 'token']),
+    ...mapGetters({
+      onlineState: 'onlineState',
+      userSecretLevel: 'userSecretLevel',
+      userId: 'userId',
+      avatar: 'avatar',
+      nickname: 'nickname',
+      token: 'token',
+      chatInfo: 'currentTalk' }),
     // 发送按钮的可用状态
     sendDisabled () {
       if (this.onlineState === ONLINE_STATUS.ONLINE) {
@@ -296,10 +300,7 @@ export default {
   watch: {
     'chatInfo.id': {
       handler: function (newId, oldId) {
-        // 设置当前联系人
-        this.$store.commit('SET_CURRENT_TALK', this.chatInfo)
         this.handleSendSecretLevel()
-
         // 设置输入框信息
         this.$store
           .dispatch('UpdateDraftMap', [oldId + 'file', this.fileUpload])
@@ -385,7 +386,7 @@ export default {
         // { group: true, name: 'groupNotice', message: '群公告', type: 'notification' },
         // { group: true, name: 'markMessage', message: '标记信息', type: 'tags' },
         { group: false, name: 'talkHistory', message: '聊天历史', type: 'file-text' },
-        { group: false, name: isGroup ? 'talkFile' : 'userFile', message: '文件', type: 'folder-open' },
+        { group: false, name: isGroup ? 'groupFile' : 'userFile', message: '文件', type: 'folder-open' },
         { group: false, name: isGroup ? 'moreInfo' : 'personMoreInfo', message: '组信息', type: 'profile' },
         { group: true, name: isGroup ? 'teamMember' : 'personMoreInfo', message: '组成员', type: 'team' }
       ]
@@ -397,11 +398,12 @@ export default {
      */
     triggerDrawer (drawerType, drawerName) {
       this.activeOption = { 'drawerType': drawerType, 'drawerName': drawerName }
+      // this.drawerWidth = '500px'
       // 组成员抽屉
-      if (drawerType === 'teamMember') {
-        this.drawerWidth = '600px'
+      if (drawerType === 'groupFile') {
+        this.drawerWidth = '650px'
       } else {
-        this.drawerWidth = '400px'
+        this.drawerWidth = '450px'
       }
     },
     /** 设置发送消息的密级 */
@@ -419,76 +421,55 @@ export default {
         return
       }
       const tweet = new Tweet()
-      /**
-       * 文件上传响应体中包含以下属性
-       * "fileId": "AAAWUHAAGAAAAxkAAG",
-       * "fileName": "api-ms-win-core-namedpipe-l1-1-0.dll",
-       * "fileExt": "",
-       * "fileType": "",
-       * "sizes": 18744,
-       * "path": "20190619",
-       * "readPath": "",
-       * "createTime": "2019-06-19 14:52:22",
-       * "creator": "登录人id_测试",
-       * "updateTime": "2019-06-19 14:52:22",
-       * "updator": "登录人id_测试",
-       * "groupId": "",
-       * "levels": ""
-       */
-      const { status } = this.fileUpload
-      const content = this.messageContent
+      const { fileUpload, messageContent: content } = this
       // 如果有文件消息，发送文件消息，忽略文字消息
-      if (status === 'done') {
-        const { fileId, fileName, readPath, fileExt } = this.fileUpload.response.result
+      if (fileUpload.status === 'done') {
+        const { fileId, fileName, readPath, fileExt } = fileUpload.response.result
         this.generateFileMsg(tweet, fileId, readPath, fileExt, fileName, secretLevel)
       } else {
         // 没有文件消息，验证文字消息的合法性
         if (content.replace(/\n/g, '').trim() === '') {
           this.$message.warning('消息内容不能为空')
+          return
         } else if (content.length > 2000) {
           this.$message.warning('消息内容不能超过2000个字符')
+          return
         } else {
           this.generateTextMsg(tweet, content, secretLevel)
         }
       }
-      // 如果消息类型属性存在，消息内容创建成功
-      if (tweet.content && tweet.content.type) {
-        this.generateBaseInfo(tweet, secretLevel)
-        this.addContactInfo(tweet)
-        const baseMessage = new SocketMessage({
-          code: this.chatInfo.isGroup ? 1 : 0,
-          data: tweet
-        }).toString()
-        this.SocketGlobal.send(baseMessage)
-        // 添加定时任务 添加到发送队列
-        this.$store.commit('ADD_TIMING_TASK', tweet.id)
-        // 更新消息列表
-        this.$store.dispatch('UpdateTalkMap', {
-          direction: 'send',
-          message: tweet
-        })
-        this.$store.dispatch('UpdateRecentContacts', {
-          ...this.chatInfo,
-          reOrder: true,
-          addUnread: false
-        })
+      this.generateBaseInfo(tweet, secretLevel)
+      this.addContactInfo(tweet)
+      const baseMessage = new SocketMessage({
+        code: this.chatInfo.isGroup ? 1 : 0,
+        data: tweet
+      }).toString()
+      this.SocketGlobal.send(baseMessage)
+      // 添加定时任务 添加到发送队列
+      this.$store.commit('ADD_TIMING_TASK', tweet.id)
+      // 更新消息列表
+      this.$store.dispatch('UpdateTalkMap', {
+        direction: 'send',
+        message: tweet
+      })
+      this.$store.dispatch('UpdateRecentContacts', {
+        ...this.chatInfo,
+        reOrder: true,
+        addUnread: false
+      })
 
-        this.scrollToBottom()
-        tweet.content.type === 1 ? (this.messageContent = '') : (this.fileUpload = {})
-      }
+      this.scrollToBottom()
+      tweet.content.type === 1 ? (this.messageContent = '') : (this.fileUpload = {})
     },
-    /** 添加联系人/群组信息 */
+    /** 添加消息发送人或所在群组信息 */
     addContactInfo (tweet) {
-      const { chatInfo, userId, nickname, avatar, userSecretLevel } = this
       tweet.contactInfo = {}
       if (tweet.isGroup) {
-        tweet.contactInfo.id = chatInfo.id
-        tweet.contactInfo.name = chatInfo.name
-        tweet.contactInfo.avatar = chatInfo.avatar
-        tweet.contactInfo.secretLevel = chatInfo.secretLevel
-        tweet.contactInfo.memberNum = chatInfo.memberNum
+        const { chatInfo: { id, name, avatar, secretLevel, memberNum } } = this
+        tweet.contactInfo = { id, name, avatar, secretLevel, memberNum }
         tweet.contactInfo.isGroup = true
       } else {
+        const { userId, nickname, avatar, userSecretLevel } = this
         tweet.contactInfo.id = userId
         tweet.contactInfo.name = nickname
         tweet.contactInfo.avatar = avatar
@@ -505,6 +486,7 @@ export default {
       tweet.avatar = avatar
       tweet.fromId = userId
       tweet.toId = chatInfo.id
+      tweet.toName = chatInfo.name
       tweet.atId = []
       tweet.time = new Date()
       tweet.isGroup = chatInfo.isGroup

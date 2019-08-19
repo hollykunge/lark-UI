@@ -26,10 +26,11 @@ class SocketMessage {
 /**
  * @description 消息体类
  * @param {String} id 消息的id
- * @param {String} username 发送者姓名
+ * @param {String} username 发送者名称
  * @param {String} avatar 发送者头像地址
  * @param {String} fromId 发送者id
- * @param {String} toId 接受者id
+ * @param {String} toId 接收者id
+ * @param {String} toName 接收者名称
  * @param {Array} atId 被at成员的id
  * @param {Object} content 消息内容
  * {
@@ -53,7 +54,18 @@ class SocketMessage {
  * }
  */
 class Tweet {
-  constructor ({ id, username, avatar, fromId, toId, atId, content, time, isGroup, contactInfo } = {}) {
+  constructor ({
+    id,
+    username,
+    avatar,
+    fromId,
+    toId,
+    toName,
+    atId,
+    content,
+    time,
+    isGroup,
+    contactInfo } = {}) {
     Object.assign(this, arguments[0])
   }
 }
@@ -75,7 +87,20 @@ class Tweet {
  * @param {Boolean} isGroup 是否为群组
  */
 class RecentContact {
-  constructor ({ id, name, time, lastMessage, avatar, atMe, secretLevel, unreadNum, memberNum, sender, isTop, isMute, isGroup } = {}) {
+  constructor ({
+    id,
+    name,
+    time,
+    lastMessage,
+    avatar,
+    atMe,
+    secretLevel,
+    unreadNum,
+    memberNum,
+    sender,
+    isTop,
+    isMute,
+    isGroup } = {}) {
     if (!id) throw new Error('RecentContact: id不能为空！')
     if (!name) throw new Error('RecentContact: name不能为空！')
     // 固定属性

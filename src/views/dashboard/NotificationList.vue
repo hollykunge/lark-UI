@@ -4,12 +4,21 @@
       <div class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row type="flex" justify="end" :gutter="8">
-            <a-col :span="12">
+            <a-col :span="10">
               <a-form-item label="通知标题">
                 <a-input v-model="queryParam.title" placeholder="请在此输入..." />
               </a-form-item>
             </a-col>
-            <a-col :span="6">
+            <a-col :span="4">
+              <a-form-item label="密级">
+                <a-select placeholder="请选择" v-model="queryParam.secretLevel">
+                  <a-select-option value="30">非密</a-select-option>
+                  <a-select-option value="40">秘密</a-select-option>
+                  <a-select-option value="60">机密</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :span="4">
               <a-form-item label="消息类型">
                 <a-select placeholder="请选择" v-model="queryParam.type">
                   <a-select-option value="admin">管理员公告</a-select-option>
@@ -57,6 +66,19 @@ export default {
           dataIndex: 'content'
         },
         {
+          title: '密级',
+          dataIndex: 'secretLevel',
+          key: 'secretLevel',
+          customRender: function (secretLevel) {
+            const config = {
+              '30': '非密',
+              '40': '秘密',
+              '60': '机密'
+            }
+            return config[secretLevel]
+          }
+        },
+        {
           title: '消息类型',
           dataIndex: 'type',
           key: 'type',
@@ -75,10 +97,15 @@ export default {
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
-        return getNoticePage(Object.assign(parameter, this.queryParam)).then(res => {
+        return getNoticePage(Object.assign(parameter, this.queryParam, { 'orgCode': this.userInfo.orgCode })).then(res => {
           return res.result
         })
       }
+    }
+  },
+  computed: {
+    userInfo () {
+      return this.$store.getters.userInfo
     }
   },
   methods: {

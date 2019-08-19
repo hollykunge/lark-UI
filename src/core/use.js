@@ -11,6 +11,8 @@ import 'ant-design-vue/dist/antd.less'
 import VueClipboard from 'vue-clipboard2'
 import PermissionHelper from '@/utils/helper/permission'
 // import '@/components/use'
+import contentmenu from 'v-contextmenu'
+import 'v-contextmenu/dist/index.css'
 
 VueClipboard.config.autoSetContainer = true
 
@@ -20,3 +22,4 @@ Vue.use(Viser)
 Vue.use(VueStorage, config.storageOptions)
 Vue.use(VueClipboard)
 Vue.use(PermissionHelper)
+Vue.use(contentmenu)

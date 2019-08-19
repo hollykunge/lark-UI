@@ -54,7 +54,11 @@ const api = {
   // 文件管理
   fileAll: 'chat/zzGroupFile/fileMonitoring',
   // 群组管理
-  groupAll: 'chat/zzGroup/groupListMonitoring'
+  groupAll: 'chat/zzGroup/groupListMonitoring',
+  // 个人消息审计
+  queryAllMessagePrivate: 'admin/zzMessageInfo/queryAllMessagePrivate',
+  // 群组消息审计
+  queryAllMessageGroup: 'admin/zzMessageInfo/queryAllMessageGroup'
 }
 
 export default api
@@ -574,6 +578,26 @@ export function fileAll (parameter) {
 export function groupAll (parameter) {
   return axios({
     url: api.groupAll,
+    method: 'get',
+    params: parameter
+  })
+}
+/**
+ * 个人消息审计
+ */
+export function queryAllMessagePrivate (parameter) {
+  return axios({
+    url: api.queryAllMessagePrivate,
+    method: 'get',
+    params: parameter
+  })
+}
+/**
+ * 群组消息审计
+ */
+export function queryAllMessageGroup (parameter) {
+  return axios({
+    url: api.queryAllMessageGroup,
     method: 'get',
     params: parameter
   })

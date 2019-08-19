@@ -84,10 +84,10 @@ export default {
           title: '操作类型',
           dataIndex: 'opt'
         },
-        {
-          title: 'uri',
-          dataIndex: 'uri'
-        },
+        // {
+        //   title: 'uri',
+        //   dataIndex: 'uri'
+        // },
         // {
         //   title: '创建账号',
         //   dataIndex: 'crtUser'
