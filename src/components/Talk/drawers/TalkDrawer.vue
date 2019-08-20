@@ -13,7 +13,7 @@
     <history-msg v-if="activeOption.drawerType=='talkHistory'" :contactId="contactId" :isGroup="isGroup"></history-msg><!-- 聊天内容 -->
     <user-file-grabble v-else-if="activeOption.drawerType=='userFile'" :contactId="contactId"></user-file-grabble><!-- 一对一对话文件 -->
     <file-grabble v-else-if="activeOption.drawerType=='groupFile'" :contactId="contactId"></file-grabble><!-- 群文件 -->
-    <team-member v-else-if="activeOption.drawerType=='teamMember'" :contactId="contactId"></team-member><!-- 组成员 -->
+    <team-member v-else-if="activeOption.drawerType=='teamMember'" :contactId="contactId" :secretLevel="secretLevel"></team-member><!-- 组成员 -->
     <talk-setting v-else-if="activeOption.drawerType=='moreInfo'" :contactId="contactId"></talk-setting><!-- 群组信息 -->
   </a-drawer>
 </template>
@@ -51,6 +51,10 @@ export default {
       type: String,
       default: '500px',
       required: false
+    },
+    secretLevel: {
+      type: Number,
+      required: true
     }
   },
   data () {

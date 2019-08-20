@@ -107,14 +107,14 @@ export const asyncRouterMap = [
         }]
       },
       {
-        path: 'list',
-        name: 'List',
+        path: 'syslist',
+        name: 'sysList',
         component: PageView,
         redirect: '/list/user-list',
         meta: {
           title: '系统管理',
           icon: 'appstore',
-          permission: ['user', 'org', 'role', 'notice', 'menu', 'gatelog', 'privateMsg', 'groupMsg']
+          permission: ['user', 'org', 'role', 'notice', 'menu']
         },
         children: [{
           path: 'user-list',
@@ -150,17 +150,6 @@ export const asyncRouterMap = [
           }
         },
         {
-          path: 'msg-list',
-          name: 'MsgList',
-          component: () => import(/* webpackChunkName: "msgList" */ '@/views/admin/NotificationList'),
-          meta: {
-            title: '消息列表',
-            icon: 'sound',
-            keepAlive: false,
-            permission: ['notice']
-          }
-        },
-        {
           path: 'menu-list',
           name: 'MenuList',
           component: () => import(/* webpackChunkName: "menuList" */ '@/views/admin/MenuList'),
@@ -170,95 +159,119 @@ export const asyncRouterMap = [
             keepAlive: false,
             permission: ['menu']
           }
-        },
-        {
-          path: '/list/word-list',
-          name: 'WordList',
-          component: () => import(/* webpackChunkName: "wordList" */ '@/views/admin/DictWord'),
-          meta: {
-            title: '敏感词汇管理',
-            icon: 'alert',
-            keepAlive: false,
-            permission: ['word']
-          }
-        },
-        {
-          path: '/list/commontools',
-          name: 'CommonTools',
-          component: () => import(/* webpackChunkName: "commonTools" */ '@/views/admin/CommonTools'),
-          meta: {
-            title: '常用链接管理',
-            icon: 'tool',
-            keepAlive: false,
-            permission: ['commontools']
-          }
-        },
-        {
-          path: '/list/log-list',
-          name: 'LogList',
-          component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/LogList'),
-          meta: {
-            title: '日志列表',
-            icon: 'reconciliation',
-            keepAlive: false,
-            permission: ['gatelog']
-          }
-        },
-        {
-          path: 'service-list',
-          name: 'ServiceList',
-          component: () => import(/* webpackChunkName: "serviceList" */ '@/views/admin/ServiceList'),
-          meta: {
-            title: '服务管理',
-            icon: 'database',
-            keepAlive: false,
-            permission: ['service']
-          }
-        },
-        {
-          path: 'file-list',
-          name: 'FileManeger',
-          component: () => import('@/views/admin/FileTable'),
-          meta: {
-            title: '文件管理',
-            icon: 'file',
-            keepAlive: false,
-            permission: ['filemanager']
-          }
-        },
-        {
-          path: 'group-list',
-          name: 'GroupManeger',
-          component: () => import('@/views/admin/GroupTable'),
-          meta: {
-            title: '研讨组管理',
-            icon: 'message',
-            keepAlive: false,
-            permission: ['groupmaneger']
-          }
-        },
-        {
-          path: '/list/privateMsg',
-          name: 'privateMsg',
-          component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/privateMsg'),
-          meta: {
-            title: '个人消息审计',
-            icon: 'reconciliation',
-            keepAlive: false,
-            permission: ['privateMsg']
-          }
-        },
-        {
-          path: '/list/groupMsg',
-          name: 'groupMsg',
-          component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/groupMsg'),
-          meta: {
-            title: '群组消息审计',
-            icon: 'reconciliation',
-            keepAlive: false,
-            permission: ['groupMsg']
-          }
         }
+        ]
+      },
+      {
+        path: 'businisslist',
+        name: 'businissList',
+        component: PageView,
+        redirect: '/',
+        meta: {
+          title: '业务管理',
+          icon: 'setting',
+          permission: ['notice', 'word', 'commontools', 'filemanager', 'groupmaneger', 'gatelog', 'privateMsg', 'groupMsg']
+        },
+        children: [
+          {
+            path: 'msg-list',
+            name: 'MsgList',
+            component: () => import(/* webpackChunkName: "msgList" */ '@/views/admin/NotificationList'),
+            meta: {
+              title: '消息列表',
+              icon: 'sound',
+              keepAlive: false,
+              permission: ['notice']
+            }
+          },
+          {
+            path: '/list/word-list',
+            name: 'WordList',
+            component: () => import(/* webpackChunkName: "wordList" */ '@/views/admin/DictWord'),
+            meta: {
+              title: '敏感词汇管理',
+              icon: 'alert',
+              keepAlive: false,
+              permission: ['word']
+            }
+          },
+          {
+            path: '/list/commontools',
+            name: 'CommonTools',
+            component: () => import(/* webpackChunkName: "commonTools" */ '@/views/admin/CommonTools'),
+            meta: {
+              title: '常用链接管理',
+              icon: 'tool',
+              keepAlive: false,
+              permission: ['commontools']
+            }
+          },
+          {
+            path: '/list/log-list',
+            name: 'LogList',
+            component: () => import(/* webpackChunkName: "logList" */ '@/views/admin/LogList'),
+            meta: {
+              title: '日志列表',
+              icon: 'reconciliation',
+              keepAlive: false,
+              permission: ['gatelog']
+            }
+          },
+          {
+            path: 'file-list',
+            name: 'FileManeger',
+            component: () => import(/* webpackChunkName: "fileManeger" */ '@/views/admin/FileTable'),
+            meta: {
+              title: '文件管理',
+              icon: 'file',
+              keepAlive: false,
+              permission: ['filemanager']
+            }
+          },
+          {
+            path: 'group-list',
+            name: 'GroupManeger',
+            component: () => import(/* webpackChunkName: "groupManeger" */ '@/views/admin/GroupTable'),
+            meta: {
+              title: '研讨组管理',
+              icon: 'message',
+              keepAlive: false,
+              permission: ['groupmaneger']
+            }
+          },
+          {
+            path: '/list/privateMsg',
+            name: 'privateMsg',
+            component: () => import(/* webpackChunkName: "privateMsg" */ '@/views/admin/privateMsg'),
+            meta: {
+              title: '个人消息审计',
+              icon: 'tag',
+              keepAlive: false,
+              permission: ['privateMsg']
+            }
+          },
+          {
+            path: '/list/groupMsg',
+            name: 'groupMsg',
+            component: () => import(/* webpackChunkName: "groupMsg" */ '@/views/admin/groupMsg'),
+            meta: {
+              title: '群组消息审计',
+              icon: 'tags',
+              keepAlive: false,
+              permission: ['groupMsg']
+            }
+          }
+          // {
+          //   path: 'service-list',
+          //   name: 'ServiceList',
+          //   component: () => import(/* webpackChunkName: "serviceList" */ '@/views/admin/ServiceList'),
+          //   meta: {
+          //     title: '服务管理',
+          //     icon: 'database',
+          //     keepAlive: false,
+          //     permission: ['service']
+          //   }
+          // },
         ]
       },
       // result

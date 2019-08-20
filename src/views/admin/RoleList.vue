@@ -145,8 +145,8 @@
       <a-form>
         <a-form-item :labelCol="labelCol" :wrapperCol="wrapperCol" label="拥有权限" hasFeedback>
           <a-row :gutter="16" v-for="(permission, index) in mdl.permissions" :key="index">
-            <a-col :span="4">{{ permission.title }}：</a-col>
-            <a-col :span="20">
+            <a-col :span="6">{{ permission.title }}：</a-col>
+            <a-col :span="18">
               <a-checkbox-group
                 :options="permission.actionEntitySetList"
                 v-model="tempSelected[index]"

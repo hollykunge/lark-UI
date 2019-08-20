@@ -6,6 +6,7 @@
       :activeOption="activeOption"
       :isGroup="JSON.stringify(chatInfo.isGroup)"
       :width="drawerWidth"
+      :secretLevel="chatInfo.secretLevel"
       @closeDrawer="triggerDrawer"
     />
     <a-layout-header class="conv-box-header">

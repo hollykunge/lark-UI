@@ -42,13 +42,13 @@ export default {
   props: {
   },
   methods: {
-    begin: function (userArr) {
+    begin: function (userArr, filter) {
       this.userArr = userArr
       this.memberVisible = true
       // ref本身是作为渲染结果被创建的，在初始渲染时不能访问
       // $refs也不是响应式的，这里使用nexttick获取子组件对象
       this.$nextTick(() => {
-        this.$refs.transfer.beginChooseUser(userArr)
+        this.$refs.transfer.beginChooseUser(userArr, filter)
       })
     },
     handleOk (users, userids) {

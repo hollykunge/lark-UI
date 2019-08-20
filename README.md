@@ -142,3 +142,5 @@
                             src\views\admin\UserList.vue
 - 201908015 push by fanjiao:filepath--【添加orgCode参数】  
                             src\views\dashboard\NotificationList.vue
+- 201908019 push by fanjiao:filepath--【业务性菜单从系统管理中拎出来，收入新增的‘业务管理’菜单中】  
+                            src\config\router.config.js

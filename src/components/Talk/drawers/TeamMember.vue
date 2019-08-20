@@ -40,6 +40,7 @@
 import { getGroupMembersPage, addMember, removeMember } from '@/api/talk.js'
 import UserModel from '@/components/admin/UserTransferModel'
 import { FILE_SERVER_IP } from '@/utils/constants'
+import { mapGetters } from 'vuex'
 export default {
   name: 'TeamMember',
   components: {
@@ -50,10 +51,17 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    secretLevel: {
+      type: Number,
+      required: true
     }
   },
   mounted () {
     this.loadData()
+  },
+  computed: {
+    ...mapGetters(['userPId'])
   },
   created () {
     if (this.isGroupOwner) {
@@ -109,7 +117,12 @@ export default {
           title: '组织机构',
           dataIndex: 'orgName'
         }
-      ]
+      ],
+      secretListMap: new Map([
+        [60, [60, 70, 80, 90]],
+        [40, [40, 50, 60, 70, 80, 90]],
+        [30, [30, 40, 50, 60, 70, 80, 90]]
+      ])
     }
   },
   methods: {
@@ -197,7 +210,10 @@ export default {
      * 新增成员
      */
     addMember () {
-      this.$refs.model.begin(this.userList)
+      this.$refs.model.begin(this.userList, {
+        secretLevels: this.secretListMap.get(this.secretLevel).join(),
+        exPid: this.userPId
+      })
     },
     /**
      * 新增成员确认
