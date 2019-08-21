@@ -173,7 +173,7 @@ export default {
         onOk () {
           _this.loading = true
           return removeMember(
-            { 'groupId': _this.contactId, 'userId': record.id }
+            { 'groupId': _this.contactId, 'type': '2', 'userList': [{ 'id': record.id }] }
           ).then(
             res => {
               if (res.status === 200) {
@@ -220,7 +220,11 @@ export default {
      */
     handleSaveOk (users, userids) {
       this.loading = true
-      addMember({ 'groupId': this.contactId, 'userIds': userids.join(',') }).then(
+      addMember({
+        'groupId': this.contactId,
+        'type': '1',
+        'userList': users
+      }).then(
         res => {
           if (res.status === 200) {
             this.$notification['success']({

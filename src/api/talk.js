@@ -24,8 +24,9 @@ const api = {
   talkHistoryAll: 'chat/zzGroup/queryHistoryMessageForSingle',
   MarkMessageGrabble: 'chat/zzUserGroupMsgTag/getUserGroupMsgTagList',
   getGroupMembers: 'chat/zzGroup/getGroupUserList',
-  removeMember: 'chat/zzGroup/removeMember',
-  addMember: 'chat/zzGroup/addMember',
+  // removeMember: 'chat/zzGroup/removeMember',
+  // addMember: 'chat/zzGroup/addMember',
+  editGroup: 'chat/zzGroup/editGroup',
   filePermission: 'chat/zzFileManage/getFilesStatus',
   // getContent: 'https://www.easy-mock.com/mock/5cef9a806bbb7d72047ec887/drawer/notice/drawer/notice',
   // 下面的地址前面必须加/
@@ -313,7 +314,7 @@ export function getGroupMembersPage (parameter) {
  */
 export function addMember (parameter) {
   return axios({
-    url: api.addMember,
+    url: api.editGroup,
     method: 'get',
     params: parameter
   })
@@ -323,7 +324,7 @@ export function addMember (parameter) {
  */
 export function removeMember (parameter) {
   return axios({
-    url: api.removeMember,
+    url: api.editGroup,
     method: 'get',
     params: parameter
   })
