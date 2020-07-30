@@ -2247,9 +2247,9 @@ bluebird@^3.5.1:
   integrity sha512-5am6HnnfN+urzt4yfg7IgTbotDjIT/u8AJpEt0sIU9FtXfVeezXAPKswrG+xKUCOYAINpSdgZVDU6QFh+cuH3w==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
-  integrity sha1-LN4J617jQfSEdGuwMJsyU7GxRC8=
+  version "4.11.9"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.9.tgz#26d556829458f9d1e81fc48952493d0ba3507828"
+  integrity sha512-E6QoYqCKZfgatHTdHzs1RRKP7ip4vvm+EyRUeE2RF0NblwVvb0p6jSVeNTOFxPn26QXN2o6SMfNxKp6kU8zQaw==
 
 body-parser@1.19.0:
   version "1.19.0"
@@ -3544,11 +3544,6 @@ de-indent@^1.0.2:
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
   integrity sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
 
-debounce@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
-  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
-
 debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3887,11 +3882,6 @@ dotenv@^6.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha1-lBwEEFNdlCyL7PKNPzV9vZ1HYGQ=
 
-dropzone@^5.5.1:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
-  integrity sha512-3VduRWLxx9hbVr42QieQN25mx/I61/mRdUSuxAmDGdDqZIN8qtP7tcKMa3KfpJjuGjOJGYYUzzeq6eGDnkzesA==
-
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -3962,9 +3952,9 @@ element-resize-detector@^1.1.10:
     batch-processor "^1.0.0"
 
 elliptic@^6.0.0:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.1.tgz#c2d0b7776911b86722c632c3c06c60f2f819939a"
-  integrity sha1-wtC3d2kRuGcixjLDwGxg8vgZk5o=
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.3.tgz#cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6"
+  integrity sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -5287,7 +5277,7 @@ hash-sum@^1.0.2:
 hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/hash.js/-/hash.js-1.1.7.tgz#0babca538e8d4ee4a0f8988d68866537a003cf42"
-  integrity sha1-C6vKU46NTuSg+JiNaIZlN6ADz0I=
+  integrity sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
@@ -5603,15 +5593,20 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
-  integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
+inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
 inherits@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
   integrity sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE=
+
+inherits@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
+  integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
 ini@^1.3.4, ini@~1.3.0:
   version "1.3.5"
@@ -7178,7 +7173,7 @@ mini-css-extract-plugin@^0.5.0:
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
-  integrity sha1-LhlN4ERibUoQ5/f7wAznPoPk1cc=
+  integrity sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
 
 minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
@@ -10394,12 +10389,10 @@ uuid@^3.0.1, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-emoji-picker@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/v-emoji-picker/-/v-emoji-picker-1.1.4.tgz#ce5f5a03a4c352788e84fae6262c69a20dcfbb26"
-  integrity sha512-rigDCf8i18xfT0mXV0iNaylkMEo7WEqDMjxbqgS9MM06+b3b1VX93uQ0OxeXxfy5Z+t7Sqz7Y1cJ10eHyskZ/w==
-  dependencies:
-    vue "^2.6.10"
+v-contextmenu@^2.8.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/v-contextmenu/-/v-contextmenu-2.9.0.tgz#1753a7afc42051f1ed5cb75c20498a16fd7ec332"
+  integrity sha512-8FnZXOfELGvfX9Zv8mmdmsxpZzS83kSS6eNyxMekHN+yo1+cZM2oeKOdpLH/Rs/n2LSJkhfxxzgS6EeGGRQyVA==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
@@ -10642,27 +10635,6 @@ vue-virtual-scroller@^1.0.0-rc.2:
     scrollparent "^2.0.1"
     vue-observe-visibility "^0.4.3"
     vue-resize "^0.4.5"
-
-vue-wysiwyg@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/vue-wysiwyg/-/vue-wysiwyg-1.7.2.tgz#8f5ffe46e95e984c1f36874cc42ede5213e3b2d8"
-  integrity sha512-ypj9vqmGJTuM/YYC30+vRPWm6+UizBqvNHnIJr1l6k92eHA33q5ubE+WPfij8Qr8mK+wbaCwaVBO7dQqvxzSTQ==
-  dependencies:
-    debounce "^1.1.0"
-    vue "^2.5.13"
-    vue2-dropzone "^3.0.4"
-
-vue2-dropzone@^3.0.4:
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-3.5.9.tgz#a63999a45a7aad24d4c21e3d35be409b4e6bdce8"
-  integrity sha512-nJz6teulVKlZIAeKgvPU7wBI/gzfIgqDOrEp1okSkQIkdprDVCoM0U7XWM0NOM4AAVX+4XGRtMoocYWdTYb3bQ==
-  dependencies:
-    dropzone "^5.5.1"
-
-vue@^2.5.13, vue@^2.6.10:
-  version "2.6.10"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vue@^2.5.17, vue@^2.5.22, vue@^2.5.3:
   version "2.6.7"
