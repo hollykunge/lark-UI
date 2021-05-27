@@ -3544,11 +3544,6 @@ de-indent@^1.0.2:
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
   integrity sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
 
-debounce@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
-  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
-
 debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3757,9 +3752,9 @@ dns-equal@^1.0.0:
   integrity sha1-s55/HabrCnW6nBcySzR1PEfgZU0=
 
 dns-packet@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/dns-packet/-/dns-packet-1.3.1.tgz#12aa426981075be500b910eedcd0b47dd7deda5a"
-  integrity sha1-EqpCaYEHW+UAuRDu3NC0fdfe2lo=
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/dns-packet/-/dns-packet-1.3.4.tgz#e3455065824a2507ba886c55a89963bb107dec6f"
+  integrity sha512-BQ6F4vycLXBvdrJZ6S3gZewt6rcrks9KBgM9vrhW+knGRqc8uEdT7fuCwloc7nny5xNoMJ17HGH0R/6fpo8ECA==
   dependencies:
     ip "^1.1.0"
     safe-buffer "^5.0.1"
@@ -3886,11 +3881,6 @@ dotenv@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha1-lBwEEFNdlCyL7PKNPzV9vZ1HYGQ=
-
-dropzone@^5.5.1:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
-  integrity sha512-3VduRWLxx9hbVr42QieQN25mx/I61/mRdUSuxAmDGdDqZIN8qtP7tcKMa3KfpJjuGjOJGYYUzzeq6eGDnkzesA==
 
 duplexer@^0.1.1:
   version "0.1.1"
@@ -9143,10 +9133,15 @@ rxjs@^6.4.0:
   dependencies:
     tslib "^1.9.0"
 
-safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha1-mR7GnSluAxN0fVm9/St0XDX4go0=
+
+safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
+  integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -10394,12 +10389,10 @@ uuid@^3.0.1, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-emoji-picker@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/v-emoji-picker/-/v-emoji-picker-1.1.4.tgz#ce5f5a03a4c352788e84fae6262c69a20dcfbb26"
-  integrity sha512-rigDCf8i18xfT0mXV0iNaylkMEo7WEqDMjxbqgS9MM06+b3b1VX93uQ0OxeXxfy5Z+t7Sqz7Y1cJ10eHyskZ/w==
-  dependencies:
-    vue "^2.6.10"
+v-contextmenu@^2.8.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/v-contextmenu/-/v-contextmenu-2.9.0.tgz#1753a7afc42051f1ed5cb75c20498a16fd7ec332"
+  integrity sha512-8FnZXOfELGvfX9Zv8mmdmsxpZzS83kSS6eNyxMekHN+yo1+cZM2oeKOdpLH/Rs/n2LSJkhfxxzgS6EeGGRQyVA==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
@@ -10642,27 +10635,6 @@ vue-virtual-scroller@^1.0.0-rc.2:
     scrollparent "^2.0.1"
     vue-observe-visibility "^0.4.3"
     vue-resize "^0.4.5"
-
-vue-wysiwyg@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/vue-wysiwyg/-/vue-wysiwyg-1.7.2.tgz#8f5ffe46e95e984c1f36874cc42ede5213e3b2d8"
-  integrity sha512-ypj9vqmGJTuM/YYC30+vRPWm6+UizBqvNHnIJr1l6k92eHA33q5ubE+WPfij8Qr8mK+wbaCwaVBO7dQqvxzSTQ==
-  dependencies:
-    debounce "^1.1.0"
-    vue "^2.5.13"
-    vue2-dropzone "^3.0.4"
-
-vue2-dropzone@^3.0.4:
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-3.5.9.tgz#a63999a45a7aad24d4c21e3d35be409b4e6bdce8"
-  integrity sha512-nJz6teulVKlZIAeKgvPU7wBI/gzfIgqDOrEp1okSkQIkdprDVCoM0U7XWM0NOM4AAVX+4XGRtMoocYWdTYb3bQ==
-  dependencies:
-    dropzone "^5.5.1"
-
-vue@^2.5.13, vue@^2.6.10:
-  version "2.6.10"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vue@^2.5.17, vue@^2.5.22, vue@^2.5.3:
   version "2.6.7"
